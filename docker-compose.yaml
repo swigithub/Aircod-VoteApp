@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  azure-vote-back:
+    image: redis
+    container_name: aircod-vote-back
+    ports:
+        - "6379:6379"
+
+  azure-vote-front:
+    build: ./azure-vote
+    image: azure-vote-front
+    container_name: aircod-vote-front
+    environment:
+      REDIS: aircod-vote-back
+    ports:
+        - "8082:80"
